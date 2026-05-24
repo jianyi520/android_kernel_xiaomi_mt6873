@@ -1,4 +1,6 @@
 [submodule "KernelSU"]
 	path = KernelSU
 	url = https://github.com/ReSukiSU/ReSukiSU
-
+[submodule "MTK_MODULE"]
+	path = vendor/mediatek/kernel_modules
+	url = https://github.com/MiCode/MTK_kernel_modules
