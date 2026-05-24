@@ -297,7 +297,7 @@ AES_ENTRY(aes_ctr_encrypt)
 	eor		v1.16b, v1.16b, v3.16b
 	st1		{v0.16b-v1.16b}, [x0], #32
 #else
-	ldr		q8, =0x30000000200000001	/* addends 1,2,3[,0] */
+	ldr		q8, .Laddends /* addends 1,2,3[,0] */
 	dup		v7.4s, w8
 	mov		v0.16b, v4.16b
 	add		v7.4s, v7.4s, v8.4s
@@ -393,7 +393,11 @@ AES_ENTRY(aes_xts_encrypt)
 	enc_switch_key	w3, x2, x6
 	ldr		q7, .Lxts_mul_x
 	b		.LxtsencNx
-
+.Laddends:
+	.word	0x00000001
+	.word	0x00000002
+	.word	0x00000003
+	.word	0x00000000
 .LxtsencloopNx:
 	ldr		q7, .Lxts_mul_x
 	next_tweak	v4, v4, v7, v8
